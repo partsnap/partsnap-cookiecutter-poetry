@@ -1,8 +1,8 @@
 """ {{cookiecutter.project_slug}}
 
 - Author: {{cookiecutter.author}}
-- Email: {{cookiecutter.email}}
-- License: {{cookiecutter.license_released_under}}
+- Email: {{cookiecutter.__email}}
+- License: {{cookiecutter.__license_released_under}}
 """
 import pytest
 import getpass

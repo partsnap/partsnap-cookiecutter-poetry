@@ -1,10 +1,27 @@
 {
     "author": "First Last",
     "partsnap_user_id": "",
-    "email": "{{cookiecutter.partsnap_user_id}}@partsnap.io",
+    "__email": "{{cookiecutter.partsnap_user_id}}@partsnap.io",
     "project_name": "example-project",
     "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
     "project_description": "My snappy project",
-    "dockerfile": "y",
-    "license_released_under": "PartSnap LLC - Confidential and Proprietary"
+    "project_type": ["standard", "fastapi", "fastapi+db"],
+    "dockerfile": true,
+    "__license_released_under": "PartSnap LLC - Confidential and Proprietary",
+
+    "__prompts__": {
+        "author": "Author full name e.g. Laurent Brack",
+        "partsnap_user_id": "Your partsnap user id e.g. laurent",
+        "project_name": "Project name",
+        "project_slug": "package name (a.k.a. slug)",
+        "project_description": "Short description",
+        "dockerfile": "will you release the project as a docker image?",
+        "project_type": {
+            "__prompt__": "Which linting tool do you want to use?",
+            "standard": "A basic python project",
+            "fastapi": "FastAPI service with no DB",
+            "fastapi+db": "FastAPI service with SQLModel"
+        }
+    }
+
 }
