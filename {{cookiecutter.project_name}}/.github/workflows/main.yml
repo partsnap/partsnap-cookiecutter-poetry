@@ -56,11 +56,22 @@ jobs:
 
       - name: Test with tox
         run: tox
-{% if cookiecutter.codecov == "y" %}
+
       - name: Upload coverage reports to Codecov with GitHub Action on Python 3.12
         uses: codecov/codecov-action@v3
         if: {% raw %}${{ matrix.python-version == '3.12' }}{% endraw %}
-{%- endif %}
+
+      - name: Testspace client setup
+        uses: testspace-com/setup-testspace@v1
+        with:
+          domain: ${{ github.repository_owner }}
+          token: ${{ secrets.TESTSPACE_TOKEN }}
+
+      - name: Push result to Testspace server
+        run: |
+          testspace junit-*.xml coverage.xml
+        if: always()
+
 
 {%- if cookiecutter.mkdocs == "y" %}
 
