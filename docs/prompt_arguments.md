@@ -13,9 +13,6 @@ Your full name.
 
 Your email address.
 
-**author_github_handle**
-
-Your github handle, i.e. `<handle>` in `https://github.com/<handle>`
 
 **project_name**
 
@@ -41,13 +38,6 @@ A short description of your project.
 workflows to setup the environment and run code formatting checks
 and unittests.
 
-**publish_to**
-
-`"pypi"`, `"artifactory"`, or `"none"`. Adds functionality to the
-`Makefile` and Github workflows to make publishing your code as
-simple as creating a new release release on Github. For more info,
-see
-[Publishing to Pypi or Artifactory](./features/publishing.md).
 
 **deptry**
 
@@ -73,7 +63,7 @@ will be deployed to the `gh-pages` branch.
 
 `"y"` or `"n"`. Adds a [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers) specification to the project along with pre-installed pre-commit hooks and VSCode python extension configuration.
 
-**license_released_under**
+**__license_released_under**
 
 Choose a [license](https://choosealicense.com/). Options:
 `["1. MIT License", "2. BSD license", "3. ISC license",  "4. Apache Software License 2.0", "5. GNU General Public License v3", "6. Not open source"]`
