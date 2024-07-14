@@ -101,8 +101,7 @@ An example of a repository generated with this package can be found [here](https
 ## System Configuration (One Time)
 
 install [pipx](https://pipx.pypa.io/stable/installation/)
-Make sure you ran ``pipx ensurepath``
-
+Make sure you ran `pipx ensurepath`
 
 install [NixOS](https://nixos.org/) if you haven't done so already
 install [direnv](https://direnv.net/). On the latest OSX version do:
