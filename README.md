@@ -9,16 +9,11 @@
 </div>
 </p style = "margin-bottom: 2rem;">
 
----
+> **WARNING** The latest version is work in progress towards supporting web services and library projects.
+> To use the original version, invoke cookiecutter with template version 1.0.0
+> ``cookiecutter git@github.com:partsnap/partsnap-cookiecutter-poetry.git -c 1.0.0``
+> For more information or to report any bug, see [DOPS-19 PartSnap Cookie Cutter Improvements](https://partsnap.atlassian.net/browse/DOPS-19)
 
-[![Release](https://img.shields.io/github/v/release/fpgmaas/cookiecutter-poetry)](https://pypi.org/project/cookiecutter-poetry/)
-[![Build status](https://img.shields.io/github/actions/workflow/status/fpgmaas/cookiecutter-poetry/main.yml?branch=main)](https://github.com/fpgmaas/cookiecutter-poetry/actions/workflows/main.yml?query=branch%3Amain)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-poetry)](https://pypi.org/project/cookiecutter-poetry/)
-[![License](https://img.shields.io/github/license/fpgmaas/cookiecutter-poetry)](https://img.shields.io/github/license/fpgmaas/cookiecutter-poetry)
-
-This is a modern Cookiecutter template that can be used to initiate a Python project with all the necessary tools for development, testing, and deployment. See [Features](#features) for a list of capabilities.
-
----
 
 **NOTE**
 
