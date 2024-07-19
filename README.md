@@ -11,7 +11,9 @@
 
 > **WARNING** The latest version is work in progress towards supporting web services and library projects.
 > To use the original version, invoke cookiecutter with template version 1.0.0
+
 ```cookiecutter git@github.com:partsnap/partsnap-cookiecutter-poetry.git -c 1.0.0```
+
 > For more information or to report any bug, see [DOPS-19 PartSnap Cookie Cutter Improvements](https://partsnap.atlassian.net/browse/DOPS-19)
 
 
