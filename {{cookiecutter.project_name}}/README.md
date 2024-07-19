@@ -11,6 +11,59 @@
 - **Github repository**: <https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/>
 - **Documentation** <https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/>
 
+## System Configuration (One Time)
+
+install [NixOS](https://nixos.org/) if you don't have NixOS installed yet
+install [direnv](https://direnv.net/). On the latest OSX version do:
+
+```bash
+  $ brew install direnv
+  $ echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+```
+
+configure [direnv](https://direnv.net/man/direnv.toml.1.html) toml file to trust our org
+
+```bash
+  $ mkdir -p ~/.config/direnv/
+  $ touch ~/.config/direnv/config.toml
+```
+
+copy the following in your `config.toml` file (you can change the path to wherever your GitHub root is. Note that this will trust `ALL` directories underneath)
+
+```
+  [global]
+  warn_timeout="20s"
+  [whitelist]
+  prefix = ["~/github/partsnap"]
+```
+
+We want to make sure Nix OS doesn't break if you update your Mac OS to the newest version.
+To do this we need to edit the .zshrc with nano.
+
+```bash
+  $ nano ~/.zshrc
+```
+
+Make sure everything is here. (your_user) is going to depend on your system user you are using located on that export PATH.
+
+```
+    export PATH="$PATH:/Users/(your_user_)/.local/bin"
+    eval "$(direnv hook zsh)"
+    # Nix
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+    # End Nix
+```
+
+After closing nano and returning to bash make sure to source the changes.
+
+```bash
+  $ source ~/.zshrc
+```
+
+Now Nix-OS should be properly set for any projects located in the specified location you put.
+
 ## Getting started with your project
 
 First, create a repository on GitHub with the same name as this project, and then run the following commands:
@@ -35,6 +88,26 @@ The CI/CD pipeline will be triggered when you open a pull request, merge to main
 To finalize the set-up for publishing to PyPi or Artifactory, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/publishing/#set-up-for-pypi).
 For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/mkdocs/#enabling-the-documentation-on-github).
 To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/codecov/).
+
+{% if cookiecutter.dockerfile == "y" -%}
+## Makefile Adjustment
+If you want to use Docker with your repository you will need to make sure the DOCKERHUB_ACCOUNT and DOCKER_PASSWORD
+are set with the correct credentials. DOCKERHUB_ACCOUNT is located at the top of the file while the DOCKER_PASSWORD
+will need to be set in an env file within the repo and gitignore that file or you need to set the DOCKER_PASSWORD
+as a secret within the github repository itself in the settings.
+```
+.PHONY: docker-login
+docker-login: ## Logs in to DockerHub with read priviliges only
+	@docker login -u $(DOCKERHUB_ACCOUNT) -p $(DOCKER_PASSWORD)
+```
+{%- endif %}
+
+{% if cookiecutter.database == "y" -%}
+## Database CLI Useful Commands
+Use these commands to populate and clear the database:
+{{cookiecutter.project_slug}} db populate
+{{cookiecutter.project_slug}} db clear
+{%- endif %}
 
 ## Releasing a new version
 

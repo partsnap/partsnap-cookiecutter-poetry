@@ -5,12 +5,6 @@ DOCKER_PROJECT_CONTAINER_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_TAGGED_IMAGE_NAME=$(DOCKER_PROJECT_IMAGE_NAME):$(tag)
 DOCKERHUB_ACCOUNT=pslbrack
 SERVICE_PORT={{ cookiecutter.port }}
-PARTSTACK_DIR=./partstack-docker
-ifndef LOCALSTACK_AUTH_TOKEN
-PARTSTACK_FILE = $(PARTSTACK_DIR)/partstack/compose-files/{{ cookiecutter.project_name }}-lstack-free.yml
-else
-PARTSTACK_FILE = $(PARTSTACK_DIR)/partstack/compose-files/{{ cookiecutter.project_name }}-lstack-pro.yml
-endif
 {%- endif %}
 
 .PHONY: install

@@ -28,6 +28,65 @@ To view the original documentation click [here](https://fpgmaas.github.io/cookie
 
 ---
 
+## System Configuration (One Time)
+
+install [NixOS](https://nixos.org/) if you don't have NixOS installed yet
+install [direnv](https://direnv.net/). On the latest OSX version do:
+
+```bash
+  $ brew install direnv
+  $ echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+```
+
+configure [direnv](https://direnv.net/man/direnv.toml.1.html) toml file to trust our org
+
+```bash
+  $ mkdir -p ~/.config/direnv/
+  $ touch ~/.config/direnv/config.toml
+```
+
+copy the following in your `config.toml` file (you can change the path to wherever your GitHub root is. Note that this will trust `ALL` directories underneath)
+
+```
+  [global]
+  warn_timeout="20s"
+  [whitelist]
+  prefix = ["~/github/partsnap"]
+```
+
+We want to make sure Nix OS doesn't break if you update your Mac OS to the newest version.
+To do this we need to edit the .zshrc with nano.
+
+```bash
+  $ nano ~/.zshrc
+```
+
+Make sure everything is here. (your_user) is going to depend on your system user you are using located on that export PATH.
+
+```
+    export PATH="$PATH:/Users/(your_user_)/.local/bin"
+    eval "$(direnv hook zsh)"
+    # Nix
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+    # End Nix
+```
+
+After closing nano and returning to bash make sure to source the changes.
+
+```bash
+  $ source ~/.zshrc
+```
+
+Now Nix-OS should be properly set for any projects located in the specified location you put.
+
+install cookiecutter
+
+```bash
+pipx install cookiecutter
+```
+
 ## Quickstart
 
 ---
@@ -97,41 +156,6 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 - Development environment with [VSCode devcontainers](https://code.visualstudio.com/docs/devcontainers/containers)
 
 An example of a repository generated with this package can be found [here](https://github.com/fpgmaas/cookiecutter-poetry-example).
-
-## System Configuration (One Time)
-
-install [pipx](https://pipx.pypa.io/stable/installation/)
-Make sure you ran `pipx ensurepath`
-
-install [NixOS](https://nixos.org/) if you haven't done so already
-install [direnv](https://direnv.net/). On the latest OSX version do:
-
-```bash
-  $ brew install direnv
-  $ echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
-```
-
-configure [direnv](https://direnv.net/man/direnv.toml.1.html) toml file to trust our org
-
-```bash
-  $ mkdir -p ~/.config/direnv/
-  $ touch ~/.config/direnv/config.toml
-```
-
-copy the following in your `config.toml` file (you can change the path to wherever your GitHub root is. Note that this will trust `ALL` directories underneath)
-
-```
-  [global]
-  warn_timeout="20s"
-  [whitelist]
-  prefix = ["~/github/partsnap"]
-```
-
-install cookiecutter
-
-```bash
-pipx install cookiecutter
-```
 
 ## Reference
 

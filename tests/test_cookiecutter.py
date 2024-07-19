@@ -130,6 +130,27 @@ def test_not_dockerfile(cookies, tmp_path):
         assert not os.path.isfile(f"{result.project_path}/Dockerfile")
 
 
+def test_database(cookies, tmp_path):
+    with run_within_dir(tmp_path):
+        result = cookies.bake(extra_context={"project_name": "my-project", "database": "y"})
+        assert result.exit_code == 0
+        assert os.path.isfile(f"{result.project_path}/myproject/cli/db/__init__.py")
+        assert os.path.isfile(f"{result.project_path}/myproject/model/db_crud.py")
+        assert not os.path.isfile(f"{result.project_path}/myproject/foo.py")
+        assert not os.path.isfile(f"{result.project_path}/tests/test_foo.py")
+
+
+def test_not_database(cookies, tmp_path):
+    with run_within_dir(tmp_path):
+        result = cookies.bake(extra_context={"project_name": "my-project", "database": "n"})
+        assert result.exit_code == 0
+        assert not os.path.isfile(f"{result.project_path}/myproject/cli/db/__init__.py")
+        assert not os.path.isfile(f"{result.project_path}/myproject/model/db_crud.py")
+        assert not os.path.isfile(f"{result.project_path}/tests/endpoints/test_samples.py")
+        assert os.path.isfile(f"{result.project_path}/myproject/foo.py")
+        assert os.path.isfile(f"{result.project_path}/tests/test_foo.py")
+
+
 def test_codecov(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake()

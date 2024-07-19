@@ -28,6 +28,7 @@ tox = "^3.25.1"
 deptry = "^0.12.0"
 mypy = "^0.991"
 pytest-cov = "^4.0.0"
+pytest-check = "^2.3.1"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.4.2"
@@ -38,11 +39,6 @@ pymdown-extensions = "^10.7.1"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.black]
-line-length = 120
-target-version = ['py37']
-preview = true
 
 [tool.poetry.scripts]
 ccp = 'cookiecutter_poetry.cli:main'

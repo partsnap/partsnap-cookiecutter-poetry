@@ -1,0 +1,3 @@
+# from sqlmodel import Field, SQLModel
+
+# from {{cookiecutter.project_slug}}.db_tables import {{cookiecutter.project_slug}}DBTables
