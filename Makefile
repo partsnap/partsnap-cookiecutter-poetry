@@ -45,6 +45,16 @@ check: ## Run code quality tools.
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@poetry run deptry .
 
+.PHONY: clean-tox
+clean-tox: ## deleting tox directory
+	@echo "🚀 Deleting Tox folder"
+	@rm -rf .tox
+
+.PHONY: tox
+tox: ## running test in tox
+	@echo "🚀 Testing code: Running Tox"
+	@poetry run tox --recreate
+
 .PHONY: test
 test: ## Test the code with pytest.
 	@echo "🚀 Testing code: Running pytest"

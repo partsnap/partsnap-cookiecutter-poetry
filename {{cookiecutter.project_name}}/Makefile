@@ -3,7 +3,6 @@ tag:=latest
 DOCKER_PROJECT_IMAGE_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_CONTAINER_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_TAGGED_IMAGE_NAME=$(DOCKER_PROJECT_IMAGE_NAME):$(tag)
-DOCKERHUB_ACCOUNT=pslbrack
 SERVICE_PORT={{ cookiecutter.port }}
 {%- endif %}
 
@@ -96,19 +95,19 @@ docs: ## Build and serve the documentation
 {%- if cookiecutter.dockerfile == 'y' %}
 .PHONY: docker-login
 docker-login: ## Logs in to DockerHub with read priviliges only
-	@docker login -u $(DOCKERHUB_ACCOUNT) -p $(DOCKER_PASSWORD)
+	@docker login -u $(PS_DOCKERHUB_USERNAME) -p $(PS_DOCKERHUB_TOKEN)
 
 .PHONY: docker-build
 docker-build: ## Build the docker image
 	@echo "🚀 building docker image $(DOCKER_PROJECT_TAGGED_IMAGE_NAME)"
-	@docker build . -t $(DOCKERHUB_ACCOUNT)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
+	@docker build . -t $(PS_DOCKERHUB_USERNAME)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
 
 .PHONY: docker-start
 docker-start: ## run the docker image
 	@echo "🚀 creating 'partsnap' network"
 	@docker network create partsnap
-	@echo "🚀 starting docker image $(DOCKERHUB_ACCOUNT)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME) on port $(SERVICE_PORT)"
-	@docker run --network="partsnap" --add-host host.docker.internal:host-gateway -d --rm --name $(DOCKER_PROJECT_CONTAINER_NAME) -p $(SERVICE_PORT):$(SERVICE_PORT) $(DOCKERHUB_ACCOUNT)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
+	@echo "🚀 starting docker image $(PS_DOCKERHUB_USERNAME)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME) on port $(SERVICE_PORT)"
+	@docker run --network="partsnap" --add-host host.docker.internal:host-gateway -d --rm --name $(DOCKER_PROJECT_CONTAINER_NAME) -p $(SERVICE_PORT):$(SERVICE_PORT) $(PS_DOCKERHUB_USERNAME)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
 	@docker ps --filter "name='{{ cookiecutter.project_name }}*'"
 	@echo {{ cookiecutter.project_name }} service: connect to http://localhost:$(SERVICE_PORT)/docs
 
@@ -121,7 +120,7 @@ docker-stop: ## run the docker image
 
 .PHONY: docker-push
 docker-push: ## push to docker
-	@docker push $(DOCKERHUB_ACCOUNT)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
+	@docker push $(PS_DOCKERHUB_USERNAME)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
 
 .PHONY: docker-image-clean
 docker-clean: ## remove all project images and containers locally

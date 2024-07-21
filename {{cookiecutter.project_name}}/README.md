@@ -66,6 +66,13 @@ Now Nix-OS should be properly set for any projects located in the specified loca
 
 ## Getting started with your project
 
+---
+
+**NOTE**: Make sure you have performed the
+[initial system configuration](#system-configuration-one-time) **once**.
+
+---
+
 First, create a repository on GitHub with the same name as this project, and then run the following commands:
 
 ```bash
@@ -88,19 +95,6 @@ The CI/CD pipeline will be triggered when you open a pull request, merge to main
 To finalize the set-up for publishing to PyPi or Artifactory, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/publishing/#set-up-for-pypi).
 For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/mkdocs/#enabling-the-documentation-on-github).
 To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/codecov/).
-
-{% if cookiecutter.dockerfile == "y" -%}
-## Makefile Adjustment
-If you want to use Docker with your repository you will need to make sure the DOCKERHUB_ACCOUNT and DOCKER_PASSWORD
-are set with the correct credentials. DOCKERHUB_ACCOUNT is located at the top of the file while the DOCKER_PASSWORD
-will need to be set in an env file within the repo and gitignore that file or you need to set the DOCKER_PASSWORD
-as a secret within the github repository itself in the settings.
-```
-.PHONY: docker-login
-docker-login: ## Logs in to DockerHub with read priviliges only
-	@docker login -u $(DOCKERHUB_ACCOUNT) -p $(DOCKER_PASSWORD)
-```
-{%- endif %}
 
 {% if cookiecutter.database == "y" -%}
 ## Database CLI Useful Commands
