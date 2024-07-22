@@ -21,9 +21,12 @@ app = typer.Typer()
 
 
 @app.command()
-def get(ctx: typer.Context, sample_id: Annotated[str, typer.Argument(help="sample id")] = "") -> None:
-    """Get information about all samples or a specific one."""
-    response = ctx.obj["db_session"].get(f"/samples/{sample_id}")
+def get(
+    ctx: typer.Context,
+    sample_data: Annotated[str, typer.Argument(help="sample data")] = "",
+) -> None:
+    """Get information about all samples or a specific one/multiple based on sample_id or word_string."""
+    response = ctx.obj["db_session"].get(f"/samples/{sample_data}")
     dump_response(response=response, success=http_status.HTTP_200_OK)
 
 

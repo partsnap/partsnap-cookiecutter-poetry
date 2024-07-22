@@ -10,7 +10,7 @@ from typing import Union
 
 from fastapi import status as http_status
 from fastapi.responses import JSONResponse
-from sqlalchemy.exc import IntegrityError, NoResultFound
+from sqlalchemy.exc import NoResultFound
 from sqlmodel import Session, select
 
 import {{cookiecutter.project_slug}}.model.db_crud as db_crud
@@ -102,18 +102,34 @@ class SampleDBModel(SampleAPIModelRead, table=True):
 
     @classmethod
     def get(
-        cls, db_session: Session, sample_id: str | int | None = None, db_model: bool = False
-    ) -> SampleAPIModelRead | JSONResponse | list[SampleAPIModelRead]:
+        cls,
+        db_session: Session,
+        sample_id: str | int | None = None,
+        word_string: str | None = None,
+        db_model: bool = False,
+        list_wanted: bool = False
+    ) -> SampleAPIModelRead | list[SampleAPIModelRead] | JSONResponse:
+        # Define error handling based on the provided parameters
+        if sample_id is not None:
+            error_message = f"Sample {sample_id} not found!"
+        elif word_string is not None:
+            error_message = f"Sample with word string '{word_string}' not found!"
+        else:
+            error_message = "No sample found with the provided criteria."
+
         db_error_handling = {
             NoResultFound: db_crud.DBErrorHandling(
-                http_status=http_status.HTTP_404_NOT_FOUND, msg=f"Sample {sample_id} not found!"
+                http_status=http_status.HTTP_404_NOT_FOUND, msg=error_message
             )
         }
+        
         statement = None
-        if sample_id or sample_id == 0:
+        if sample_id is not None:
             statement = select(SampleDBModel).where(sample_id == SampleDBModel.id)
             with contextlib.suppress(ValueError):
-                statement = select(SampleDBModel).where(SampleDBModel.id == int(sample_id))
+                statement = select(SampleDBModel).where(int(sample_id) == SampleDBModel.id)
+        elif word_string is not None:
+            statement = select(SampleDBModel).where(SampleDBModel.word_string.contains(word_string))
 
         response = db_crud.get(
             model_cls=SampleDBModel,  # type: ignore[arg-type]
@@ -121,6 +137,7 @@ class SampleDBModel(SampleAPIModelRead, table=True):
             logger=LOGGER,
             query_statement=statement,
             db_error_handling=db_error_handling,  # type: ignore[arg-type]
+            list_wanted=list_wanted,
         )
         if db_model:
             return response  # type: ignore[return-value]

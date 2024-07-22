@@ -285,7 +285,16 @@ def get(
     if query_statement is not None:
         logger.debug(f"Getting single record from {table_name}")
         try:
-            db_record = db_session.exec(query_statement).all() if list_wanted else db_session.exec(query_statement).one()
+            if list_wanted:
+                db_records = db_session.exec(query_statement).all()
+                # Handle cases where only one record is found but wrapped in a list
+                if len(db_records) == 1:
+                    # Makes sure to not return the list since there is only one record object
+                    return db_records[0]
+                return db_records  # Return the list of records
+            else:
+                db_record = db_session.exec(query_statement).one()
+                return db_record
         except (DatabaseError, InvalidRequestError) as db_error:
             handler = db_error_handling.get(  # type: ignore[call-overload]
                 db_error.__class__,

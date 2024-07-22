@@ -43,13 +43,22 @@ def test_get_all_samples(client, a_sample):
     assert a_sample in [SampleAPIModelRead(**json_wh) for json_wh in response.json()]
 
 
-def test_get_samples_by_id(client, a_sample):
+def test_get_sample_by_id(client, a_sample):
     resp_by_id = client.get(f"/samples/{a_sample.id}")
     with check:
         assert resp_by_id.status_code == status.HTTP_200_OK
     by_id = SampleAPIModelRead(**resp_by_id.json())
     with check:
         assert by_id == a_sample
+
+
+def test_get_sample_by_word_string(client, a_sample):
+    resp_by_word_string = client.get(f"/samples/{a_sample.word_string}")
+    with check:
+        assert resp_by_word_string.status_code == status.HTTP_200_OK
+    by_word_string = SampleAPIModelRead(**resp_by_word_string.json())
+    with check:
+        assert by_word_string == a_sample
 
 
 @pytest.mark.parametrize("word_string,description", [("foo goof", "goofy"), ("test lol", "haha test")])

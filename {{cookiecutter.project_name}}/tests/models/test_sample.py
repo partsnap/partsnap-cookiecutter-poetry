@@ -35,6 +35,8 @@ def test_create_sample(db_session):
 def test_get_sample(db_session, db_sample):
     db_sample_by_id = SampleDBModel.get(db_session=db_session, sample_id=db_sample.id)
     assert db_sample_by_id == db_sample
+    db_sample_by_word_string = SampleDBModel.get(db_session=db_session, word_string=db_sample.word_string)
+    assert db_sample_by_word_string == db_sample
 
 
 def test_get_all_samples(db_session, db_sample):
@@ -43,6 +45,9 @@ def test_get_all_samples(db_session, db_sample):
 
 def test_get_sample_not_found(db_session):
     db_sample = SampleDBModel.get(db_session=db_session, sample_id="FKU")
+    assert isinstance(db_sample, JSONResponse)
+    assert db_sample.status_code == http_status.HTTP_404_NOT_FOUND
+    db_sample = SampleDBModel.get(db_session=db_session, word_string="FKU")
     assert isinstance(db_sample, JSONResponse)
     assert db_sample.status_code == http_status.HTTP_404_NOT_FOUND
 
