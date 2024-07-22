@@ -122,7 +122,7 @@ class SampleDBModel(SampleAPIModelRead, table=True):
                 http_status=http_status.HTTP_404_NOT_FOUND, msg=error_message
             )
         }
-        
+
         statement = None
         if sample_id is not None:
             statement = select(SampleDBModel).where(sample_id == SampleDBModel.id)
