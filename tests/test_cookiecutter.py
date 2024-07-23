@@ -2,6 +2,7 @@ import os
 import shlex
 import subprocess
 from contextlib import contextmanager
+from cookiecutter_poetry.cli import main
 
 
 @contextmanager
@@ -12,6 +13,19 @@ def run_within_dir(path: str):
         yield
     finally:
         os.chdir(oldpwd)
+
+
+def test_main(mocker, tmp_path):
+    # Mock os.system to avoid actually running the Cookiecutter CLI
+    mock_os_system = mocker.patch('os.system')
+
+    # Mock os.path.dirname and os.path.abspath to control the paths used in the test
+    mocker.patch('os.path.dirname', return_value=str(tmp_path))
+    mocker.patch('os.path.abspath', return_value=str(tmp_path / "parent"))
+
+    main()
+
+    mock_os_system.assert_called_once_with(f"cookiecutter {tmp_path / 'parent'}")
 
 
 def file_contains_text(file: str, text: str) -> bool:
