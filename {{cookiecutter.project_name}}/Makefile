@@ -1,10 +1,8 @@
 tag:=latest
-{%- if cookiecutter.dockerfile == 'y' %}
 DOCKER_PROJECT_IMAGE_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_CONTAINER_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_TAGGED_IMAGE_NAME=$(DOCKER_PROJECT_IMAGE_NAME):$(tag)
 SERVICE_PORT={{ cookiecutter.port }}
-{%- endif %}
 
 .PHONY: install
 install: ## Install the poetry environment
@@ -24,10 +22,8 @@ check: ## Run code quality tools.
 	@poetry run ruff hooks tests cookiecutter_poetry --config pyproject.toml
 	@echo "🚀 Static type checking: Running mypy"
 	@poetry run mypy
-{%- if cookiecutter.deptry == 'y' %}
     @echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@poetry run deptry .
-{%- endif %}
 
 .PHONY: clean-tox
 clean-tox: ## deleting tox directory
@@ -42,11 +38,7 @@ tox: ## running test in tox
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
-{%- if cookiecutter.codecov == "y"%}
 	@poetry run pytest --cov --cov-config=pyproject.toml --cov-report=xml
-{%- else %}
-	@poetry run pytest --doctest-modules
-{%- endif%}
 
 {%- if cookiecutter.publish_to == "pypi"%}
 .PHONY: publish
@@ -82,7 +74,6 @@ build-and-publish: build publish ## Build and publish.
 # clean-build: ## clean build artifacts
 # 	@rm -rf dist
 
-{%- if cookiecutter.mkdocs == "y" %}
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@poetry run mkdocs build -s
@@ -90,9 +81,7 @@ docs-test: ## Test if documentation can be built without warnings or errors
 .PHONY: docs
 docs: ## Build and serve the documentation
 	@poetry run mkdocs serve
-{%- endif %}
 
-{%- if cookiecutter.dockerfile == 'y' %}
 .PHONY: docker-login
 docker-login: ## Logs in to DockerHub with read priviliges only
 	@docker login -u $(PS_DOCKERHUB_USERNAME) -p $(PS_DOCKERHUB_TOKEN)
@@ -129,7 +118,6 @@ docker-clean: ## remove all project images and containers locally
 	@-docker rmi -f `docker image ls -f reference='{{ cookiecutter.project_name }}*' -aq` 2>/dev/null
 	@-docker rmi -f `docker image ls -f reference='pslbrack/{{ cookiecutter.project_name }}*' -aq` 2>/dev/null
 	@docker image ls
-{%- endif %}
 
 {%- if cookiecutter.database == 'y' %}
 .PHONY: reset-db

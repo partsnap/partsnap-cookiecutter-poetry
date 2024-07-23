@@ -1,7 +1,8 @@
-"""
+""" Conftest for tests
+
     - Author: {{cookiecutter.author}}
     - Email: {{cookiecutter.email}}
-    - License: {{cookiecutter.license_released_under}}
+    - Copyright (C) 2024 PartSnap LLC
 See https://fastapi.tiangolo.com/tutorial/testing/
 """
 

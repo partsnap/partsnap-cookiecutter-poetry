@@ -90,21 +90,11 @@ def test_dont_publish(cookies, tmp_path):
 
 def test_mkdocs(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"mkdocs": "y"})
+        result = cookies.bake()
         assert result.exit_code == 0
         assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "mkdocs gh-deploy")
         assert file_contains_text(f"{result.project_path}/Makefile", "docs:")
         assert os.path.isdir(f"{result.project_path}/docs")
-
-
-def test_not_mkdocs(cookies, tmp_path):
-    with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"mkdocs": "n"})
-        assert result.exit_code == 0
-        file_path = f"{result.project_path}/.github/workflows/on-release-main.yml"
-        assert not os.path.isfile(file_path), f"Expected file '{file_path}' was not created."
-        assert not file_contains_text(f"{result.project_path}/Makefile", "docs:")
-        assert not os.path.isdir(f"{result.project_path}/docs")
 
 
 def test_tox(cookies, tmp_path):
@@ -118,16 +108,9 @@ def test_tox(cookies, tmp_path):
 
 def test_dockerfile(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"dockerfile": "y"})
+        result = cookies.bake()
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/Dockerfile")
-
-
-def test_not_dockerfile(cookies, tmp_path):
-    with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"dockerfile": "n"})
-        assert result.exit_code == 0
-        assert not os.path.isfile(f"{result.project_path}/Dockerfile")
 
 
 def test_database(cookies, tmp_path):
@@ -157,22 +140,3 @@ def test_codecov(cookies, tmp_path):
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/codecov.yaml")
         assert os.path.isfile(f"{result.project_path}/.github/workflows/validate-codecov-config.yml")
-
-
-def test_not_codecov(cookies, tmp_path):
-    with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"codecov": "n"})
-        assert result.exit_code == 0
-        assert not os.path.isfile(f"{result.project_path}/codecov.yaml")
-        assert not os.path.isfile(f"{result.project_path}/.github/workflows/validate-codecov-config.yml")
-
-
-def test_remove_release_workflow(cookies, tmp_path):
-    with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to": "none", "mkdocs": "y"})
-        assert result.exit_code == 0
-        assert os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")
-
-        result = cookies.bake(extra_context={"publish_to": "none", "mkdocs": "n"})
-        assert result.exit_code == 0
-        assert not os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")

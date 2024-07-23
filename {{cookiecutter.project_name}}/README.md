@@ -103,9 +103,8 @@ Use these commands to populate and clear the database:
 {{cookiecutter.project_slug}} db clear
 {%- endif %}
 
-## Releasing a new version
-
 {% if cookiecutter.publish_to == "pypi" -%}
+## Releasing a new version
 
 - Create an API Token on [Pypi](https://pypi.org/).
 - Add the API Token to your projects secrets with the name `PYPI_TOKEN` by visiting [this page](https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/settings/secrets/actions/new).

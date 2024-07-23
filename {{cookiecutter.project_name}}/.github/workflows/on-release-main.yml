@@ -40,7 +40,6 @@ jobs:
           {%- endraw -%}
           {%- endif %}
   {% endif %}
-  {%- if cookiecutter.mkdocs == "y" %}
   deploy-docs:
     {%- if cookiecutter.publish_to != "none" %}
     needs: publish
@@ -55,4 +54,3 @@ jobs:
 
       - name: Deploy documentation
         run: poetry run mkdocs gh-deploy --force
-  {% endif %}

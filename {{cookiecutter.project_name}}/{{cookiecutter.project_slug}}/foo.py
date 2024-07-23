@@ -1,8 +1,8 @@
 """ {{cookiecutter.project_slug}}
 
-- Author: {{cookiecutter.author}}
-- Email: {{cookiecutter.email}}
-- License: {{cookiecutter.license_released_under}}
+    - Author: {{cookiecutter.author}}
+    - Email: {{cookiecutter.email}}
+    - Copyright (C) 2024 PartSnap LLC
 """
 
 def foo(bar: str) -> str:

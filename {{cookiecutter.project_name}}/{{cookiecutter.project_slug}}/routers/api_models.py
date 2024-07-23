@@ -1,3 +1,10 @@
+""" Api Model Routes
+
+    - Author: {{cookiecutter.author}}
+    - Email: {{cookiecutter.email}}
+    - Copyright (C) 2024 PartSnap LLC
+"""
+
 from typing import Optional
 
 from pydantic import ConfigDict
