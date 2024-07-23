@@ -9,6 +9,12 @@
 </div>
 </p style = "margin-bottom: 2rem;">
 
+--
+[![Documentation Status](https://readthedocs.com/projects/partsnap-llc-partsnap-cookiecutter-poetry/badge/?version=latest&token=fbd35572c635fc26d72e64f71a1b36006f1d65c3a70a5fa09bcfdfabc64da3d4)](https://partsnap-llc-partsnap-cookiecutter-poetry.readthedocs-hosted.com/en/latest/?badge=latest)
+[//]: # "[![Space Metric](https://partsnap.testspace.com/spaces/276170/badge?token=61b8e588504e74168bfe61130177943269d116ee)](https://partsnap.testspace.com/spaces/276170?utm_campaign=metric&utm_medium=referral&utm_source=badge "Test Cases")"
+[//]: # "[![Space Metric](https://partsnap.testspace.com/spaces/276170/metrics/616814/badge?token=c8134493abfdc1f719ecc94703e37e77d778b63f)](https://partsnap.testspace.com/spaces/276170/current/Code%20Coverage?utm_campaign=metric&utm_medium=referral&utm_source=badge "Code Coverage (lines)")"
+[//]: # "[![Space Metric](https://partsnap.testspace.com/spaces/276170/metrics/616813/badge?token=ed02f64788f25309f24a951cf3cae40e97c41487)](https://partsnap.testspace.com/spaces/276170/current/Code%20Coverage?utm_campaign=metric&utm_medium=referral&utm_source=badge "Code Coverage (branches)")"
+
 > This is the latest version that is supporting web services and library projects for PARTSNAP LLC.
 > To use the original version, invoke cookiecutter with template version 1.0.0
 
@@ -124,6 +130,12 @@ pipeline will be triggered when you open a pull request, merge to main,
 or when you create a new release.
 
 To finalize the set-up for publishing to PyPi or Artifactory, see [here](./features/publishing.md#set-up-for-pypi). For activating the automatic documentation with MkDocs, see [here](./features/mkdocs.md#enabling-the-documentation-on-github). To enable the code coverage reports, see [here](./features/codecov).
+
+## Testspace Integration
+
+This template supports Testspace from the start. You just need to go to [Testspace PartSnap LLC](https://partsnap.testspace.com/).
+Top right "+ New Project" button and tie the repostiory you just created with Testspace. Documenation for Testspace on project creation
+is commented out by default and will have to be manually updated once you connect the new repoistory to Testspace.
 
 ## Useful Tutorials
 
