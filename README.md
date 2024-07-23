@@ -9,7 +9,7 @@
 </div>
 </p style = "margin-bottom: 2rem;">
 
-> **WARNING** The latest version is work in progress towards supporting web services and library projects.
+> **WARNING** The latest version is work in progress towards supporting web services and library projects. **WARNING**
 > To use the original version, invoke cookiecutter with template version 1.0.0
 
 `cookiecutter git@github.com:partsnap/partsnap-cookiecutter-poetry.git -c 1.0.0`
