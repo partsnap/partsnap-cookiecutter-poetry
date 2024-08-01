@@ -9,7 +9,9 @@
 {{cookiecutter.project_description}}
 
 - **Github repository**: <https://github.com/partsnap/{{cookiecutter.project_name}}/>
-- **Documentation** <https://partsnap.github.io/{{cookiecutter.project_name}}/>
+
+<!-- Uncomment and **UPDATE** the following links to integrate documentation status for Read the Docs and Testspace. -->
+<!-- - **Documentation** <https://partsnap-llc-{{cookiecutter.project_name}}.readthedocs-hosted.com/en/latest/> -->
 
 ## System Configuration (One Time)
 
@@ -109,8 +111,26 @@ make docker-stop
 ## Database CLI Useful Commands
 
 Use these commands to populate and clear the database:
+
+```bash
+poetry run start-server
+
 {{cookiecutter.project_slug}} db populate
 {{cookiecutter.project_slug}} db clear
+
+{{cookiecutter.project_slug}} --test-client api samples get 1
+{{cookiecutter.project_slug}} --test-client api samples get 'world'
+```
+
+After starting the server, if the command `partshop` is throwing an error, reset your code editor or run these instead:
+
+```bash
+poetry run {{cookiecutter.project_slug}} db populate
+poetry run {{cookiecutter.project_slug}} db clear
+
+poetry run {{cookiecutter.project_slug}} --test-client api samples get 1
+poetry run {{cookiecutter.project_slug}} --test-client api samples get 'world'
+```
 {%- endif %}
 {% if cookiecutter.publish_to == "pypi" -%}
 ## Releasing a new version

@@ -30,6 +30,9 @@ To view the original documentation click [here](https://fpgmaas.github.io/cookie
 
 ---
 
+- **Github repository**: <https://github.com/partsnap/partsnap-cookiecutter-poetry/>
+- **Documentation** <https://partsnap-llc-partsnap-cookiecutter-poetry.readthedocs-hosted.com/en/latest/>
+
 ## System Configuration (One Time)
 
 install [NixOS](https://nixos.org/) if you don't have NixOS installed yet
@@ -184,9 +187,26 @@ To finalize the set-up for publishing to PyPi or Artifactory, see [here](./featu
 
 This template supports Testspace from the start. [Testspace PartSnap LLC](https://partsnap.testspace.com/)
 Make sure your project github repository is on our Testspace.
-(Optional): Documenation in the README.md for Testspace badges on project creation is commented out by default and will have to be manually updated once you connect the new repoistory to Testspace.
+
+(Optional): Documenation in the README.md for Testspace badges on project creation is commented out by default and will have to be manually updated once you connect the new repoistory to Testspace. You will want to update the `index.md` file as well in the `docs folder` with the badges if you decide to add them.
+
+## Read the Docs Support
+
+Read the Docs support are included in this template. Once you create your project,
+go to this link [PartSnap LLC Read the Docs Dashboard](https://readthedocs.com/dashboard/)
+Make sure you are logged in with your partsnap.io google account. Click the import button to import your repository.
+You will need to make sure you sync with your github account that is tied with the PartSnap LLC Org.
+Once all the Org repositories are in sync, find the respository you created with the template.
+Go through the options just clicking continue for everything.
+Once done run a build on the doc and it will build the Read the Doc for you.
+
+(Optional): Documentation in the README.md for the Read the Docs badge on project creation is commented out by default and will have to be manually updated after you run the build for Read the Docs. You will want to update the `index.md` file as well in the `docs folder` with the badges if you decide to add them.
 
 ## Useful Tutorials
+
+### In Depth Setup
+
+If you want more configuration to your project on initial creation, check this [tutorial](./docs/tutorials/bootstrap.md)
 
 ### Integration with PyCharm
 
