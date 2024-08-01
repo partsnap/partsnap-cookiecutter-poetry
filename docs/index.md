@@ -8,22 +8,6 @@
   </div>
 </div>
 </p style = "margin-bottom: 2rem;">
-<style>
-  .md-typeset h1,
-  .md-content__button {
-    display: none;
-  }
-  .column {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-</style>
 
 ---
 
@@ -221,6 +205,9 @@ Once done run a build on the doc and it will build the Read the Doc for you.
 (Optional): Documentation in the README.md for the Read the Docs badge on project creation is commented out by default and will have to be manually updated after you run the build for Read the Docs. You will want to update the `index.md` file as well in the `docs folder` with the badges if you decide to add them.
 
 ## Useful Tutorials
+
+### In Depth Setup
+If you want more configuration to your project on initial creation, check this [tutorial](./tutorials/bootstrap.md)
 
 ### Integration with PyCharm
 
