@@ -118,11 +118,12 @@ After project creation open your project and install the environment and run the
 ```bash
 make install
 make check
+make check
 make test
 make docs
 ```
 
-make check will need to be run twice since file linting pre-commit will change files based on how long your project_slug will be.
+`make check` will need to be run twice since file linting pre-commit will change files based on how long your project_slug will be.
 This is mainly due to imports being too long or name of project_slug being used within code.
 
 To check if Docker is setup properly run these commands:
@@ -137,17 +138,18 @@ Once you have installed the environment and run the pre-commit hooks,
 run the following commands, replacing `<project-name>`, with the name that you gave the Github repository:
 
 ```bash
-git commit -m "Init commit"
+git add poetry.lock
+git commit -am "Init commit"
 git remote add origin git@github.com:partsnap/<project_name>.git
 ```
 
 Before pushing your code, you will need to setup Testspace for the project. You just need to go to [Testspace PartSnap LLC](https://partsnap.testspace.com/).
-Top right "+ New Project" button and tie the repostiory you just created with Testspace. Your github repo for this project must be created within
+Top right "+ New Project" button and tie the repository you just created with Testspace. Your github repo for this project must be created within
 our Github Partsnap Org before you can link Testspace. If you don't see the "+ New Project" button at the top right, you will need to be given admin access
 to your Testspace account.
 
 Once you link your repo to Testspace next you need to go and get your Testspace Access Token.
-To do this go to the top left where your name is, click your name and then click edit.
+To do this go to the top right where your name is, click your name and then click edit.
 Below your github username is your Access Token from Testspace.
 Keep this open so you can copy the Access Token to your clipboard for the next step.
 
