@@ -13,10 +13,6 @@ Your full name.
 
 Your email address.
 
-**author_github_handle**
-
-Your github handle, i.e. `<handle>` in `https://github.com/<handle>`
-
 **project_name**
 
 Your project name. Should be equal to the name of your repository
@@ -31,15 +27,18 @@ replaced with `_`. This will be how you import your code later, e.g.
 from <project_slug> import foo
 ```
 
+**project_caps**
+
+The project caps, will default to the `project_slug` with all caps.
+This will be how you import your code later, e.g.
+
+```python
+from <project_caps> import foo
+```
+
 **project_description**
 
 A short description of your project.
-
-**include_github_actions**
-
-`"y"` or `"n"`. Adds a `.github` directory with various actions and
-workflows to setup the environment and run code formatting checks
-and unittests.
 
 **publish_to**
 
@@ -49,33 +48,14 @@ simple as creating a new release release on Github. For more info,
 see
 [Publishing to Pypi or Artifactory](./features/publishing.md).
 
-**deptry**
+**port**
+The port to be used for your library or service.
 
-`"y"` or `"n"`. Adds [deptry](https://fpgmaas.github.io/deptry/)
-to the development dependencies of the project, and adds it to the `make check` command. `deptry` is a command line tool to check for issues with dependencies in a Python project, such as obsolete or missing dependencies.
-
-**mkdocs**
-
-`"y"` or `"n"`. Adds [MkDocs](https://www.mkdocs.org/)
-documentation to your project. This includes automatically parsing
-your docstrings and adding them to the documentation. Documentation
-will be deployed to the `gh-pages` branch.
-
-**codecov**
-
-`"y"` or `"n"`. Adds code coverage checks with [codecov](https://about.codecov.io/).
-
-**dockerfile**
-
-`"y"` or `"n"`. Adds a simple [Dockerfile](https://docker.com).
+**database**
+`"y"` or `"n"`. Adds a database template to the project.
 
 **devcontainer**
 
 `"y"` or `"n"`. Adds a [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers) specification to the project along with pre-installed pre-commit hooks and VSCode python extension configuration.
-
-**license_released_under**
-
-Choose a [license](https://choosealicense.com/). Options:
-`["1. MIT License", "2. BSD license", "3. ISC license",  "4. Apache Software License 2.0", "5. GNU General Public License v3", "6. Not open source"]`
 
 ---
