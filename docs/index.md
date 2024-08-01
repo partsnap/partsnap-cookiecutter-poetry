@@ -207,6 +207,7 @@ Once done run a build on the doc and it will build the Read the Doc for you.
 ## Useful Tutorials
 
 ### In Depth Setup
+
 If you want more configuration to your project on initial creation, check this [tutorial](./tutorials/bootstrap.md)
 
 ### Integration with PyCharm
