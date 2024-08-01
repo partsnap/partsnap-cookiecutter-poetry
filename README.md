@@ -118,11 +118,12 @@ After project creation open your project and install the environment and run the
 ```bash
 make install
 make check
+make check
 make test
 make docs
 ```
 
-make check will need to be run twice since file linting pre-commit will change files based on how long your project_slug will be.
+`make check` will need to be run twice since file linting pre-commit will change files based on how long your project_slug will be.
 This is mainly due to imports being too long or name of project_slug being used within code.
 
 To check if Docker is setup properly run these commands:
@@ -137,21 +138,22 @@ Once you have installed the environment and run the pre-commit hooks,
 run the following commands, replacing `<project-name>`, with the name that you gave the Github repository:
 
 ```bash
-git commit -m "Init commit"
+git add poetry.lock
+git commit -am "Init commit"
 git remote add origin git@github.com:partsnap/<project_name>.git
 ```
 
 Before pushing your code, you will need to setup Testspace for the project. You just need to go to [Testspace PartSnap LLC](https://partsnap.testspace.com/).
-Top right "+ New Project" button and tie the repostiory you just created with Testspace. Your github repo for this project must be created within
+Top right "+ New Project" button and tie the repository you just created with Testspace. Your github repository for this project must be created within
 our Github Partsnap Org before you can link Testspace. If you don't see the "+ New Project" button at the top right, you will need to be given admin access
 to your Testspace account.
 
-Once you link your repo to Testspace next you need to go and get your Testspace Access Token.
-To do this go to the top left where your name is, click your name and then click edit.
+Once you link your repository to Testspace next you need to go and get your Testspace Access Token.
+To do this go to the top right where your name is, click your name and then click edit.
 Below your github username is your Access Token from Testspace.
 Keep this open so you can copy the Access Token to your clipboard for the next step.
 
-Lastly go to the repo you just created and go to the Settings tab.
+Lastly go to the repository you just created and go to the Settings tab.
 On the left hand side there should be a Security section with a "Secrets and variables" dropdown.
 Once the dropdown is open go to Actions, you want to click "New repository secret" in green.
 For the name of the secret it needs to be called:
@@ -169,7 +171,8 @@ git push -u origin main
 ```
 
 By default this template supports github workflows and one of the workflows is Testspace.
-This means if you don't have Testspace linked, the push will not work.
+This means if you don't have Testspace linked, the push will work, the problem happens for
+future pushes when you do PR requests on the repository, it will not let you merge into main.
 
 You are now ready to start development on your project! The CI/CD
 pipeline will be triggered when you open a pull request, merge to main,
@@ -180,7 +183,7 @@ To finalize the set-up for publishing to PyPi or Artifactory, see [here](./featu
 ## Testspace Integration
 
 This template supports Testspace from the start. [Testspace PartSnap LLC](https://partsnap.testspace.com/)
-Make sure your project github repo is on our Testspace.
+Make sure your project github repository is on our Testspace.
 (Optional): Documenation in the README.md for Testspace badges on project creation is commented out by default and will have to be manually updated once you connect the new repoistory to Testspace.
 
 ## Useful Tutorials
