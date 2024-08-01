@@ -73,7 +73,7 @@ Now Nix-OS should be properly set for any projects located in the specified loca
 
 ---
 
-First, create/find a directory you want to clone the repo into and run this command:
+First, create/find a directory you want to clone the repository into and run this command:
 
 ```bash
 git clone https://github.com/partsnap/{{cookiecutter.project_name}}.git
@@ -112,8 +112,7 @@ Use these commands to populate and clear the database:
 {{cookiecutter.project_slug}} db populate
 {{cookiecutter.project_slug}} db clear
 {%- endif %}
-
-{%- if cookiecutter.publish_to == "pypi" -%}
+{% if cookiecutter.publish_to == "pypi" -%}
 ## Releasing a new version
 
 - Create an API Token on [Pypi](https://pypi.org/).
@@ -129,8 +128,7 @@ For more details, see [here](https://fpgmaas.github.io/cookiecutter-poetry/featu
 - Create a new tag in the form `*.*.*`.
 
 For more details, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/cicd/#how-to-trigger-a-release).
-{%- endif -%}
-
+{%- endif %}
 ---
 
 Repository initiated with [partsnap/partsnap-cookiecutter-poetry](https://github.com/partsnap/partsnap-cookiecutter-poetry).
