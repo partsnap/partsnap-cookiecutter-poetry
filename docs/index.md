@@ -224,12 +224,12 @@ Once done run a build on the doc and it will build the Read the Doc for you.
 
 ### Integration with PyCharm
 
-If you are using NixOS and Pycharm, check this [tutorial](./docs/tutorials/pycharm_nixos.md)
+If you are using NixOS and Pycharm, check this [tutorial](./tutorials/pycharm_nixos.md)
 for setting things up.
 
 ### Mermaid Diagram and Charting System
 
-Check this [tutorial](./docs/tutorials/mermaid.md)
+Check this [tutorial](./tutorials/mermaid.md)
 
 ## Features
 
