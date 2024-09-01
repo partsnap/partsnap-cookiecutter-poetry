@@ -285,17 +285,7 @@ def get(
     if query_statement is not None:
         logger.debug(f"Getting single record from {table_name}")
         try:
-            if list_wanted:
-                db_records = db_session.exec(query_statement).all()
-                # Handle cases where only one record is found but wrapped in a list
-                if len(db_records) == 1:
-                    # Makes sure to not return the list since there is only one record object
-                    return db_records[0]
-                # Return the list of records
-                return db_records
-            else:
-                db_record = db_session.exec(query_statement).one()
-                return db_record
+            db_record = db_session.exec(query_statement).all() if list_wanted else db_session.exec(query_statement).one()
         except (DatabaseError, InvalidRequestError) as db_error:
             handler = db_error_handling.get(  # type: ignore[call-overload]
                 db_error.__class__,
@@ -310,40 +300,8 @@ def get(
                 content={"detail": handler.msg},
             )
 
+        return db_record  # type: ignore[no-any-return]
     logger.debug(f"Getting all records from {table_name}")
-    response = db_session.exec(select(model_cls)).all()  # type: ignore[call-overload]
+    response = session.exec(select(model_cls)).all()  # type: ignore[call-overload]
     logger.debug(f"response {response}")
-    return response
-
-
-def get_list(
-    model_cls: PartSnapBaseModel,
-    db_session: Session,
-    logger: Logger,
-    query_statement: Any | None,
-    db_error_handling: dict[DatabaseError, DBErrorHandling],
-) -> list[PartSnapBaseModel] | JSONResponse:
-    """Retrieves list of records from the database."""
-    table_name = model_cls.__class__.__name__
-    if query_statement is not None:
-        logger.debug(f"Getting records from {table_name}")
-        try:
-            db_records = db_session.exec(query_statement).all()
-        except (DatabaseError, InvalidRequestError) as db_error:
-            handler = db_error_handling.get(  # type: ignore[call-overload]
-                db_error.__class__,
-                DBErrorHandling(
-                    http_status=http_status.HTTP_404_NOT_FOUND,
-                    msg=f"Failed to locate record(s) in {table_name} - no mapping provided error",
-                ),
-            )
-            return JSONResponse(
-                status_code=handler.http_status,
-                content={"detail": handler.msg},
-            )
-        return db_records  # type: ignore[no-any-return]
-    else:
-        logger.debug(f"Getting all records from {table_name}")
-        db_records = db_session.exec(select(model_cls)).all()  # type: ignore[call-overload]
-        logger.debug(f"DB records = {db_records}")
-        return db_records  # type: ignore[no-any-return]
+    return response  # type: ignore[return-value]

@@ -6,7 +6,7 @@
 """
 
 import json
-from typing import Annotated, Union
+from typing import Annotated
 
 import sqlalchemy
 from fastapi import APIRouter, Depends
@@ -41,11 +41,11 @@ async def get_samples(
         return SampleDBModel.get(db_session=db_session)  # type: ignore[return-value]
 
 
-@router.get("/{sample_data}", response_model=Union[list[SampleAPIModelRead], SampleAPIModelRead])
+@router.get("/{sample_data}", response_model=SampleAPIModelRead)
 async def get_sample(
     sample_data: int | str,
     db_engine: Annotated[sqlalchemy.Engine, Depends(ps_db_session)],
-) -> SampleAPIModelRead | list[SampleAPIModelRead] | JSONResponse:
+) -> SampleAPIModelRead | JSONResponse:
     LOGGER.info(f"GET /samples/{sample_data}")
     # Validate input
     if can_convert_to_int(sample_data):

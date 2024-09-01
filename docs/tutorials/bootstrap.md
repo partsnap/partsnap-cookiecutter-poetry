@@ -37,21 +37,25 @@ pyenv install -v 3.9.7
 
 Replacing `3.9.7` with a version of your choosing.
 
-## Step 3: Generate your project
+## Step 3: Install and Setup Nix
+
+[NIX Installation and Setup](https://partsnap.atlassian.net/wiki/spaces/SD/pages/113410049/NIX)
+
+## Step 4: Generate your project
 
 ```bash
 pip install cookiecutter-poetry
 cookiecutter https://github.com/partsnap/partsnap-cookiecutter-poetry.git
 ```
 
-## Step 4: Set up your Github repository
+## Step 5: Set up your Github repository
 
 Create an empty [new repository](https://github.com/new) on Github. Give
 it a name that only contains alphanumeric characters and optionally `-`.
 DO NOT check any boxes under the option `Initialize this repository
 with`.
 
-## Step 5: Upload your project to Github
+## Step 6: Upload your project to Github
 
 Run the following commands:
 
@@ -122,7 +126,7 @@ By default this template supports github workflows and one of the workflows is T
 This means if you don't have Testspace linked, the push will work, the problem happens for
 future pushes when you do PR requests on the repository, it will not let you merge into main.
 
-## Step 6: Activate your environment
+## Step 7: Activate your environment
 
 If you are using `pyenv`, you might want to set the local `python` version to be used:
 
@@ -137,18 +141,18 @@ make install
 poetry shell
 ```
 
-## Step 7: Sign up to codecov.io
+## Step 8: Sign up to codecov.io
 
 If you enabled code coverage with codecov for your project, you should sign up with your GitHub account at [codecov.io](https://about.codecov.io/language/python/)
 
-## Step 8: Configure your repository secrets
+## Step 9: Configure your repository secrets
 
 If you want to deploy your project to Pypi or Artifactory using the
 Github Actions, you will have to set some repository secrets. For
 instructions on how to do that, see [here](../features/publishing.md#set-up-for-pypi) for PyPi, or
 [here](../features/publishing.md#set-up-for-artifactory) for Artifactory.
 
-## Step 9: Create a new release
+## Step 10: Create a new release
 
 To trigger a new release, navigate to your repository on GitHub, click `Releases` on the right, and then select `Draft
 a new release`. If you fail to find the button, you could also directly visit
@@ -157,14 +161,14 @@ a new release`. If you fail to find the button, you could also directly visit
 Give your release a title, and add a new tag in the form `*.*.*` where the
 `*`'s are alphanumeric. To finish, press `Publish release`.
 
-## Step 10: Enable your documentation
+## Step 11: Enable your documentation
 
 In your repository, navigate to `Settings > Code and Automation > Pages`. If you succesfully created a new release,
 you should see a notification saying ` Your site is ready to be published at https://<author_github_handle>.github.io/<project_name>/`.
 
 To finalize deploying your documentation, under `Source`, select the branch `gh-pages`.
 
-## Step 11: You're all set!
+## Step 12: You're all set!
 
 That's it! I hope this repository saved you a lot of manual configuration. If you have any improvement suggestions, feel
 free to raise an issue or open a PR on Github!

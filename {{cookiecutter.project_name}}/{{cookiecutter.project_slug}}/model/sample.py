@@ -108,7 +108,6 @@ class SampleDBModel(SampleAPIModelRead, table=True):
         sample_id: str | int | None = None,
         word_string: str | None = None,
         db_model: bool = False,
-        list_wanted: bool = False,
     ) -> SampleAPIModelRead | list[SampleAPIModelRead] | JSONResponse:
         # Define error handling based on the provided parameters
         if sample_id is not None:
@@ -136,7 +135,6 @@ class SampleDBModel(SampleAPIModelRead, table=True):
             logger=LOGGER,
             query_statement=statement,
             db_error_handling=db_error_handling,  # type: ignore[arg-type]
-            list_wanted=list_wanted,
         )
         if db_model:
             return response  # type: ignore[return-value]
