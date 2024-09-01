@@ -302,6 +302,6 @@ def get(
 
         return db_record  # type: ignore[no-any-return]
     logger.debug(f"Getting all records from {table_name}")
-    response = session.exec(select(model_cls)).all()  # type: ignore[call-overload]
+    response = db_session.exec(select(model_cls)).all()  # type: ignore[call-overload]
     logger.debug(f"response {response}")
     return response  # type: ignore[return-value]
