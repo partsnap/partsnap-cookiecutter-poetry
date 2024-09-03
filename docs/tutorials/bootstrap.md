@@ -17,7 +17,7 @@ whenever you create them with `poetry init`.
 ## Step 2: Install pyenv (Optional)
 
 I would recommend to use `pyenv` for managing your different Python versions. However, if you prefer another method of
-managing your Python versions, feel free to skip this step and continue to [step 3](#step-3-generate-your-project).
+managing your Python versions, feel free to skip this step and continue to [step 3](#step-3-install-and-setup-nix).
 
 The instructions to install pyenv can be found [here](https://github.com/pyenv/pyenv). The instructions to install
 poetry can be found [here](https://python-poetry.org/docs/).
@@ -126,7 +126,25 @@ By default this template supports github workflows and one of the workflows is T
 This means if you don't have Testspace linked, the push will work, the problem happens for
 future pushes when you do PR requests on the repository, it will not let you merge into main.
 
-## Step 7: Activate your environment
+## Step 7: Docker Setup
+
+To run the Docker setup refer to [Docker Credential Setup](../features/docker.md)
+
+Once the credentials have been set into a `.env` file, now run these commands:
+
+```bash
+# Choose one command to run for the login
+# If you want to read
+make docker-read-login
+or
+# If you want to read and push
+make docker-push-login
+make docker-build
+make docker-start
+make docker-stop
+```
+
+## Step 8: Activate your environment
 
 If you are using `pyenv`, you might want to set the local `python` version to be used:
 
@@ -141,18 +159,18 @@ make install
 poetry shell
 ```
 
-## Step 8: Sign up to codecov.io
+## Step 9: Sign up to codecov.io
 
 If you enabled code coverage with codecov for your project, you should sign up with your GitHub account at [codecov.io](https://about.codecov.io/language/python/)
 
-## Step 9: Configure your repository secrets
+## Step 10: Configure your repository secrets
 
 If you want to deploy your project to Pypi or Artifactory using the
 Github Actions, you will have to set some repository secrets. For
 instructions on how to do that, see [here](../features/publishing.md#set-up-for-pypi) for PyPi, or
 [here](../features/publishing.md#set-up-for-artifactory) for Artifactory.
 
-## Step 10: Create a new release
+## Step 11: Create a new release
 
 To trigger a new release, navigate to your repository on GitHub, click `Releases` on the right, and then select `Draft
 a new release`. If you fail to find the button, you could also directly visit
@@ -161,14 +179,14 @@ a new release`. If you fail to find the button, you could also directly visit
 Give your release a title, and add a new tag in the form `*.*.*` where the
 `*`'s are alphanumeric. To finish, press `Publish release`.
 
-## Step 11: Enable your documentation
+## Step 12: Enable your documentation
 
 In your repository, navigate to `Settings > Code and Automation > Pages`. If you succesfully created a new release,
 you should see a notification saying ` Your site is ready to be published at https://<author_github_handle>.github.io/<project_name>/`.
 
 To finalize deploying your documentation, under `Source`, select the branch `gh-pages`.
 
-## Step 12: You're all set!
+## Step 13: You're all set!
 
 That's it! I hope this repository saved you a lot of manual configuration. If you have any improvement suggestions, feel
 free to raise an issue or open a PR on Github!

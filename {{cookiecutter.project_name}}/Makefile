@@ -64,15 +64,6 @@ publish: ## Publish to the Artifactory repository using poetry. Requires ARTIFAC
 build-and-publish: build publish ## Build and publish.
 {%- endif%}
 
-# .PHONY: build
-# build: clean-build ## Build wheel file using poetry
-# 	@echo "🚀 Creating wheel file"
-# 	@poetry build
-
-# .PHONY: clean-build
-# clean-build: ## clean build artifacts
-# 	@rm -rf dist
-
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@poetry run mkdocs build -s
@@ -81,9 +72,13 @@ docs-test: ## Test if documentation can be built without warnings or errors
 docs: ## Build and serve the documentation
 	@poetry run mkdocs serve
 
-.PHONY: docker-login
-docker-login: ## Logs in to DockerHub with read priviliges only
+.PHONY: docker-read-login
+docker-read-login: ## Logs in to DockerHub with read priviliges only
 	@docker login -u $(PS_DOCKERHUB_USERNAME) -p $(PS_DOCKERHUB_TOKEN)
+
+.PHONY: docker-push-login
+docker-push-login: ## Logs in to DockerHub with read and push priviliges
+	@docker login -u $(PS_DOCKERHUB_USERNAME) -p $(PS_PUSH_DOCKERHUB_TOKEN)
 
 .PHONY: docker-build
 docker-build: ## Build the docker image
@@ -105,10 +100,6 @@ docker-stop: ## run the docker image
 	@docker ps --filter "name='{{ cookiecutter.project_name }}*'"
 	@echo "🚀 deleting 'partsnap' network"
 	@ docker network rm partsnap
-
-.PHONY: docker-push
-docker-push: ## push to docker
-	@docker push $(PS_DOCKERHUB_USERNAME)/$(DOCKER_PROJECT_TAGGED_IMAGE_NAME)
 
 .PHONY: docker-image-clean
 docker-clean: ## remove all project images and containers locally

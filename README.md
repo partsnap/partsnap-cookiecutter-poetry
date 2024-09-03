@@ -80,14 +80,6 @@ make docs
 `make check` will need to be run twice since file linting pre-commit will change files based on how long your project_slug will be.
 This is mainly due to imports being too long or name of project_slug being used within code.
 
-To check if Docker is setup properly run these commands:
-
-```bash
-make docker-build
-make docker-start
-make docker-stop
-```
-
 Once you have installed the environment and run the pre-commit hooks,
 run the following commands, replacing `<project-name>`, with the name that you gave the Github repository:
 
@@ -140,6 +132,24 @@ This template supports Testspace from the start. [Testspace PartSnap LLC](https:
 Make sure your project github repository is on our Testspace.
 
 (Optional): Documenation in the README.md for Testspace badges on project creation is commented out by default and will have to be manually updated once you connect the new repoistory to Testspace. You will want to update the `index.md` file as well in the `docs folder` with the badges if you decide to add them.
+
+## Docker Setup
+
+To run the Docker setup refer to [Docker Credential Setup](./docs/features/docker.md)
+
+Once the credentials have been set into a `.env` file, now run these commands:
+
+```bash
+# Choose one command to run for the login
+# If you want to read
+make docker-read-login
+or
+# If you want to read and push
+make docker-push-login
+make docker-build
+make docker-start
+make docker-stop
+```
 
 ## Read the Docs Support
 

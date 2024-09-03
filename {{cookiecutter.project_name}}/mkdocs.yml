@@ -10,6 +10,7 @@ copyright: Maintained by <a href="https://partsnap.com">{{cookiecutter.author}}<
 nav:
   - Home: index.md
   - Modules: modules.md
+  - Docker: docker.md
 plugins:
   - search
   - mermaid2:

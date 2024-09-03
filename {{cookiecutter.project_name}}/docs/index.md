@@ -15,56 +15,7 @@
 
 ## System Configuration (One Time)
 
-install [NixOS](https://nixos.org/) if you don't have NixOS installed yet
-install [direnv](https://direnv.net/). On the latest OSX version do:
-
-```bash
-  $ brew install direnv
-  $ echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
-```
-
-configure [direnv](https://direnv.net/man/direnv.toml.1.html) toml file to trust our org
-
-```bash
-  $ mkdir -p ~/.config/direnv/
-  $ touch ~/.config/direnv/config.toml
-```
-
-copy the following in your `config.toml` file (you can change the path to wherever your GitHub root is. Note that this will trust `ALL` directories underneath)
-
-```
-  [global]
-  warn_timeout="20s"
-  [whitelist]
-  prefix = ["~/github/partsnap"]
-```
-
-We want to make sure Nix OS doesn't break if you update your Mac OS to the newest version.
-To do this we need to edit the .zshrc with nano.
-
-```bash
-  $ nano ~/.zshrc
-```
-
-Make sure everything is here. (your_user) is going to depend on your system user you are using located on that export PATH.
-
-```
-    export PATH="$PATH:/Users/(your_user_)/.local/bin"
-    eval "$(direnv hook zsh)"
-    # Nix
-    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-    fi
-    # End Nix
-```
-
-After closing nano and returning to bash make sure to source the changes.
-
-```bash
-  $ source ~/.zshrc
-```
-
-Now Nix-OS should be properly set for any projects located in the specified location you put.
+[NIX Installation and Setup](https://partsnap.atlassian.net/wiki/spaces/SD/pages/113410049/NIX)
 
 ## Getting started with your project
 
@@ -99,9 +50,17 @@ To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookie
 
 ## Docker Setup
 
-To run the Docker setup, run these commands:
+To run the Docker setup refer to [Docker Credential Setup](./docker.md)
+
+Once the credentials have been set into a `.env` file, now run these commands:
 
 ```bash
+# Choose one command to run for the login
+# If you want to read
+make docker-read-login
+or
+# If you want to read and push
+make docker-push-login
 make docker-build
 make docker-start
 make docker-stop
