@@ -285,7 +285,9 @@ def get(
     if query_statement is not None:
         logger.debug(f"Getting single record from {table_name}")
         try:
-            db_record = db_session.exec(query_statement).all() if list_wanted else db_session.exec(query_statement).one()
+            db_record = (
+                db_session.exec(query_statement).all() if list_wanted else db_session.exec(query_statement).one()
+            )
         except (DatabaseError, InvalidRequestError) as db_error:
             handler = db_error_handling.get(  # type: ignore[call-overload]
                 db_error.__class__,
@@ -300,8 +302,8 @@ def get(
                 content={"detail": handler.msg},
             )
 
-        return db_record  # type: ignore[no-any-return]
+        return db_record
     logger.debug(f"Getting all records from {table_name}")
     response = db_session.exec(select(model_cls)).all()  # type: ignore[call-overload]
     logger.debug(f"response {response}")
-    return response  # type: ignore[return-value]
+    return response

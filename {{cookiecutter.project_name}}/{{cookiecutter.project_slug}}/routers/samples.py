@@ -53,12 +53,12 @@ async def get_sample(
         sample_id = sample_data
         # Fetch by sample_id
         with Session(db_engine) as db_session:
-            return SampleDBModel.get(db_session=db_session, sample_id=sample_id)
+            return SampleDBModel.get(db_session=db_session, sample_id=sample_id)  # type: ignore[return-value]
     else:
         word_string = sample_data
         # Fetch by word_string
         with Session(db_engine) as db_session:
-            return SampleDBModel.get(db_session=db_session, word_string=word_string)  # type: ignore[arg-type]
+            return SampleDBModel.get(db_session=db_session, word_string=word_string)  # type: ignore[arg-type, return-value]
 
 
 @router.post(
