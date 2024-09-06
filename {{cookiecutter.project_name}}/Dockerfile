@@ -18,7 +18,7 @@ COPY {{cookiecutter.project_slug}} /code/{{cookiecutter.project_slug}}/
 # Uncomment this code below if you want to use docker with a database
 # Make a fresh Database
 {% if cookiecutter.database == 'y' -%}
-RUN poetry run {{cookiecutter.project_slug}} db clear
+RUN poetry run {{cookiecutter.project_slug}} --test-client db clear
 RUN poetry run {{cookiecutter.project_slug}} --test-client --no-storage-connection db populate
 RUN poetry version -s > /code/{{cookiecutter.project_slug}}/VERSION.txt
 {% endif -%}

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "{{cookiecutter.project_slug}}"
-version = "0.0.1"
+version = "1.0.0.dev1"
 description = "{{cookiecutter.project_description}}"
 authors = ["{{cookiecutter.author}} <f{{cookiecutter.email}}>"]
 repository = "https://github.com/partsnap/{{cookiecutter.project_name}}"
@@ -38,7 +38,10 @@ mkdocs = "^1.4.2"
 mkdocs-material = "^9.2.7"
 mkdocs-mermaid2-plugin = "^1.1.1"
 pymdown-extensions = "^10.7.1"
-mkdocstrings = {extras = ["python"], version = "^0.23.0"}
+mkdocstrings = {extras = ["python", "shell"], version = "^0.25.2"}
+mkdocs-drawio-file = "^1.5.2"
+mkdocs-github-admonitions-plugin = "^0.0.2"
+mkdocs-exclude = "^1.0.2"
 
 [tool.poetry.group.test.dependencies]
 pytest-lazy-fixture = "^0.6.3"

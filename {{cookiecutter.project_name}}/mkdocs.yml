@@ -5,24 +5,38 @@ site_description: {{cookiecutter.project_description}}
 site_author: {{cookiecutter.author}}
 edit_uri: edit/main/docs/
 repo_name: partsnap/{{cookiecutter.project_name}}
-copyright: Maintained by <a href="https://partsnap.com">{{cookiecutter.author}}</a>.
-
+copyright: 2024 PartSnap LLC.
+dev_addr: 127.0.0.1:{{cookiecutter.mkdocs_port}}
 nav:
   - Home: index.md
-  - Modules: modules.md
   - Docker: docker.md
 plugins:
   - search
+  - drawio_file
   - mermaid2:
       version: 10.2.4
   - mkdocstrings:
+      default_handler: python
       handlers:
         python:
           setup_commands:
             - import sys
             - sys.path.append('../')
+          options:
+            inherited_members: false
+            annotations_path: brief
+            show_signature: true
+            modernize_annotations: true
+            show_signature_annotations: true
+            show_source: false
+            show_root_heading: true
+            show_root_toc_entry: true
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
   feature:
     tabs: true
   palette:
@@ -53,6 +67,8 @@ extra:
 markdown_extensions:
   - toc:
       permalink: true
+  - admonition
+  - pymdownx.snippets:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.superfences:
