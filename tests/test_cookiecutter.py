@@ -134,6 +134,8 @@ def test_database(cookies, tmp_path):
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/myproject/cli/db/__init__.py")
         assert os.path.isfile(f"{result.project_path}/myproject/model/db_crud.py")
+        assert os.path.isfile(f"{result.project_path}/tests/endpoints/test_samples.py")
+        assert os.path.isfile(f"{result.project_path}/Dockerfile")
         assert not os.path.isfile(f"{result.project_path}/myproject/foo.py")
         assert not os.path.isfile(f"{result.project_path}/tests/test_foo.py")
 
@@ -145,6 +147,7 @@ def test_not_database(cookies, tmp_path):
         assert not os.path.isfile(f"{result.project_path}/myproject/cli/db/__init__.py")
         assert not os.path.isfile(f"{result.project_path}/myproject/model/db_crud.py")
         assert not os.path.isfile(f"{result.project_path}/tests/endpoints/test_samples.py")
+        assert not os.path.isfile(f"{result.project_path}/Dockerfile")
         assert os.path.isfile(f"{result.project_path}/myproject/foo.py")
         assert os.path.isfile(f"{result.project_path}/tests/test_foo.py")
 

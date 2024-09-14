@@ -38,6 +38,7 @@ if __name__ == "__main__":
         remove_file("tests/conftest.py")
         remove_file("tests/endpoints/conftest.py")
         remove_file("tests/endpoints/test_samples.py")
+        remove_file("Dockerfile")
 
     if "{{cookiecutter.devcontainer}}" != "y":
         remove_dir(".devcontainer")

@@ -1,4 +1,4 @@
-tag:=latest
+tag:=$(shell poetry version -s)
 PS_DOCKERHUB_USERNAME = pslbrack
 DOCKER_PROJECT_IMAGE_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_CONTAINER_NAME={{ cookiecutter.project_name }}
