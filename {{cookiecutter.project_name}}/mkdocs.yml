@@ -9,7 +9,9 @@ copyright: 2024 PartSnap LLC.
 dev_addr: 127.0.0.1:{{cookiecutter.mkdocs_port}}
 nav:
   - Home: index.md
+  {% if cookiecutter.database == "y" -%}
   - Docker: docker.md
+  {%- endif %}
 plugins:
   - search
   - drawio_file
