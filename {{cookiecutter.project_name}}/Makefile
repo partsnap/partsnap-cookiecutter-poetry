@@ -1,9 +1,11 @@
+{%- if cookiecutter.database == "y"%}
 tag:=$(shell poetry version -s)
 PS_DOCKERHUB_USERNAME = pslbrack
 DOCKER_PROJECT_IMAGE_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_CONTAINER_NAME={{ cookiecutter.project_name }}
 DOCKER_PROJECT_TAGGED_IMAGE_NAME=$(DOCKER_PROJECT_IMAGE_NAME):$(tag)
 SERVICE_PORT={{ cookiecutter.port }}
+{%- endif %}
 
 .PHONY: install
 install: ## Install the poetry environment
@@ -72,6 +74,7 @@ docs-test: ## Test if documentation can be built without warnings or errors
 docs: ## Build and serve the documentation
 	@poetry run mkdocs serve
 
+{%- if cookiecutter.database == "y"%}
 .PHONY: docker-read-login
 docker-read-login: ## Logs in to DockerHub with read priviliges only
 	@docker login -u $(PS_DOCKERHUB_USERNAME) -p $(PS_DOCKERHUB_TOKEN)
@@ -109,7 +112,6 @@ docker-clean: ## remove all project images and containers locally
 	@-docker rmi -f `docker image ls -f reference='pslbrack/{{ cookiecutter.project_name }}*' -aq` 2>/dev/null
 	@docker image ls
 
-{%- if cookiecutter.database == 'y' %}
 .PHONY: reset-db
 reset-db: ## clears and repopulate the database
 	@{{ cookiecutter.project_name }} --test-client db clear
@@ -119,5 +121,7 @@ reset-db: ## clears and repopulate the database
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	{%- if cookiecutter.database == "y"%}
 	@echo tag=$(tag)
+	{%- endif %}
 .DEFAULT_GOAL := help

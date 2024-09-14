@@ -133,4 +133,4 @@ DEP002 = ['types-requests']
 [tool.poetry.scripts]
 start-server = "{{cookiecutter.project_slug}}.main:start_server_entry_point"
 {{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.cli:cli_app"
-{% endif %}
+{%- endif %}

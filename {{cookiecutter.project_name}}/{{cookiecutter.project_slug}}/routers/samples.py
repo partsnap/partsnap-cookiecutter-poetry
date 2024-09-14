@@ -83,7 +83,7 @@ async def create_sample(
             LOGGER.debug(f"POST [OK]  /samples/ data={json.dumps(response.model_dump(), indent=2)}")
         if isinstance(response, JSONResponse):
             LOGGER.error(
-                f"POST [FAILED]  /samples/ data={sample_data} response {response.status_code} {response.body.decode('utf-8')}"
+                f"POST [FAILED]  /samples/ data={sample_data} response {response.status_code} {response.body.decode('utf-8')}"  # type: ignore[union-attr]
             )
         return response
 
@@ -110,7 +110,7 @@ async def update_sample(
             LOGGER.debug(f"PUT [OK]  /samples/{sample_id} data={json.dumps(response.model_dump(), indent=2)}")
         if isinstance(response, JSONResponse):
             LOGGER.error(
-                f"PUT [FAILED]  /samples/{sample_id} data={sample_data} response {response.status_code} {response.body.decode('utf-8')}"
+                f"PUT [FAILED]  /samples/{sample_id} data={sample_data} response {response.status_code} {response.body.decode('utf-8')}"  # type: ignore[union-attr]
             )
         return response  # type: ignore[return-value]
 
@@ -136,6 +136,6 @@ async def delete_sample(
             LOGGER.debug(f"DELETE [OK]  /samples/{sample_id} response {json.dumps(response.model_dump(), indent=2)}")
         if isinstance(response, JSONResponse):
             LOGGER.error(
-                f"DELETE [FAILED]  /samples/{sample_id} response {response.status_code} {response.body.decode('utf-8')}"
+                f"DELETE [FAILED]  /samples/{sample_id} response {response.status_code} {response.body.decode('utf-8')}"  # type: ignore[union-attr]
             )
         return response
