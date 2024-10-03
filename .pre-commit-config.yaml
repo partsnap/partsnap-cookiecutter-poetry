@@ -28,3 +28,4 @@ repos:
     hooks:
       - id: mypy
         language: system
+        exclude: ^{{cookiecutter.project_name}}
