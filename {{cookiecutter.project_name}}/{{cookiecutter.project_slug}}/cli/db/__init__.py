@@ -16,7 +16,7 @@ from typing_extensions import Annotated
 
 from {{cookiecutter.project_slug}}.dbms.sqlite_db import SQLiteDBUtils
 from {{cookiecutter.project_slug}}.model.sample import SampleAPIModelCreate
-from {{cookiecutter.project_slug}}.utils.typer import PSTyperRunner
+from {{cookiecutter.project_slug}}.cli.utils.typer import PSTyperRunner
 
 db_app = typer.Typer()
 

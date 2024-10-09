@@ -12,7 +12,7 @@ import pytest
 
 from {{cookiecutter.project_slug}}.dbms.sqlite_db import SQLiteDBUtils
 from {{cookiecutter.project_slug}}.logging import psnap_get_logger
-from {{cookiecutter.project_slug}}.utils.typer import PSTyperRunner
+from {{cookiecutter.project_slug}}.cli.utils.typer import PSTyperRunner
 
 logger = psnap_get_logger("utils.PSTyperRunner")
 logger.setLevel(logging.DEBUG)

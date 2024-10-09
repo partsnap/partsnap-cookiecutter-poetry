@@ -28,7 +28,6 @@ if __name__ == "__main__":
         remove_dir("{{cookiecutter.project_slug}}/logging")
         remove_dir("{{cookiecutter.project_slug}}/model")
         remove_dir("{{cookiecutter.project_slug}}/routers")
-        remove_dir("{{cookiecutter.project_slug}}/utils")
         remove_file("{{cookiecutter.project_slug}}/_server_doc.py")
         remove_file("{{cookiecutter.project_slug}}/app_builder.py")
         remove_file("{{cookiecutter.project_slug}}/db_tables.py")

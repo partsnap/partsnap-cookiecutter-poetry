@@ -13,8 +13,8 @@ from {{cookiecutter.project_slug}}.app_builder import create_fastapi_app
 from {{cookiecutter.project_slug}}.cli.api import api_app
 from {{cookiecutter.project_slug}}.cli.db import db_app
 from {{cookiecutter.project_slug}}.logging import psnap_set_log_level
-from {{cookiecutter.project_slug}}.utils.session import PSServerSession
-from {{cookiecutter.project_slug}}.utils.test_client import PSTestClient
+from {{cookiecutter.project_slug}}.cli.utils.session import PSServerSession
+from {{cookiecutter.project_slug}}.cli.utils.test_client import PSTestClient
 
 cli_app = typer.Typer(no_args_is_help=True)
 cli_app.add_typer(api_app, name="api", help="Restful API command line interface", no_args_is_help=True)
