@@ -15,7 +15,7 @@ from fastapi.testclient import TestClient
 
 import {{cookiecutter.project_slug}}.dbms.sqlite_db as sqlite_utils
 from {{cookiecutter.project_slug}}.app_builder import create_fastapi_app
-from {{cookiecutter.project_slug}}.utils.typer import PSTyperRunner
+from {{cookiecutter.project_slug}}.cli.utils.typer import PSTyperRunner
 
 
 @pytest.fixture(scope="session")

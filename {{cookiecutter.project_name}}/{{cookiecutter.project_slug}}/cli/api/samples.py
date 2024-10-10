@@ -15,7 +15,7 @@ from fastapi import status as http_status
 from typing_extensions import Annotated
 
 from {{cookiecutter.project_slug}}.model.sample import SampleAPIModelCreate
-from {{cookiecutter.project_slug}}.utils.cli import dump_response
+from {{cookiecutter.project_slug}}.cli.utils.cli import dump_response
 
 app = typer.Typer()
 
