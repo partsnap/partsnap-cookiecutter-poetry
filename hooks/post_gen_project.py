@@ -32,6 +32,7 @@ if __name__ == "__main__":
         remove_file("{{cookiecutter.project_slug}}/app_builder.py")
         remove_file("{{cookiecutter.project_slug}}/db_tables.py")
         remove_file("{{cookiecutter.project_slug}}/main.py")
+        remove_file("github/workflows/.push-docker-registry.yml")
         remove_file("docs/docker.md")
         remove_dir("tests/cli")
         remove_dir("tests/models")
