@@ -42,7 +42,7 @@ def create_fastapi_app(storage_connection: bool = False) -> FastAPI:
     @fastapi_app.get("/", include_in_schema=False)
     async def docs_redirect() -> RedirectResponse:
         """Redirecting to the docs page."""
-        return RedirectResponse(url="/docs")
+        return RedirectResponse(url=request.scope.get("root_path") + "/docs")  # type: ignore[operator]
 
     @fastapi_app.get("/")
     async def get_status() -> Response:
