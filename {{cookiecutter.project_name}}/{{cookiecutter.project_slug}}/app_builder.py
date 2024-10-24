@@ -9,7 +9,7 @@ import os
 import pathlib
 
 import uvicorn
-from fastapi import FastAPI, status
+from fastapi import FastAPI, Request, status
 from fastapi.responses import FileResponse, RedirectResponse, Response
 
 from {{cookiecutter.project_slug}}._server_doc import server_metadata
@@ -40,7 +40,7 @@ def create_fastapi_app(storage_connection: bool = False) -> FastAPI:
     LOGGER.warning("We should redirected / to /docs")
 
     @fastapi_app.get("/", include_in_schema=False)
-    async def docs_redirect() -> RedirectResponse:
+    async def docs_redirect(request: Request) -> RedirectResponse:
         """Redirecting to the docs page."""
         return RedirectResponse(url=request.scope.get("root_path") + "/docs")  # type: ignore[operator]
 
