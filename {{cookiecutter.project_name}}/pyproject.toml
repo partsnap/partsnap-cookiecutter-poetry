@@ -72,7 +72,7 @@ fix = true
 [tool.ruff.format]
 preview = true
 
-[tool.lint]
+[tool.ruff.lint]
 select = [
     # flake8-2020
     "YTT",
