@@ -116,6 +116,9 @@ ignore = [
     "F403",
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101"]
+
 [tool.coverage.report]
 skip_empty = true
 
